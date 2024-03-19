@@ -1,12 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function App() {
+  const [valorUm, setValorUm] = React.useState('');
+  const [valorDois, setValorDois] = React.useState('');
+  const media = (parseFloat(valorUm) + parseFloat(valorDois)) / 2;
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Digite seu nome:</Text>
-      <TextInput style={styles.textinp}/>
-      <TouchableOpacity style={styles.botao}>
+
+      <Text style={styles.titulo}>Digite o primeiro valor:</Text>
+      <TextInput onChangeText={setValorUm} style={styles.textinp}/>
+      <Text style={styles.titulo}>{valorUm}</Text>
+
+      <Text style={styles.titulo}>Digite o segundo valor:</Text>
+      <TextInput onChangeText={setValorDois} style={styles.textinp}/>
+      <Text style={styles.titulo}>{valorDois}</Text>
+
+      <Text style={styles.titulo}>Resultado da Média:</Text>
+      {!isNaN(media) && <Text style={styles.titulo}>{media}</Text>}
+
+      <TouchableOpacity  style={styles.botao}>
         <Text style={styles.btntxt}>Enviar</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
@@ -24,7 +38,7 @@ const styles = StyleSheet.create({
 
     },
   titulo: {
-    fontSize: 40,
+    fontSize: 25,
     color: 'black',
   },
   textinp: {
